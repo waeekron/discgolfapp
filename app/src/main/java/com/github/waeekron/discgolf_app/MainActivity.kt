@@ -5,12 +5,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
@@ -59,18 +63,19 @@ fun BottomNavigation(navController: NavController) {
     var selectedIdx by rememberSaveable { mutableIntStateOf(0) }
 
 
-    NavigationBar() {
+    NavigationBar(containerColor = MaterialTheme.colorScheme.surface, contentColor = MaterialTheme.colorScheme.onTertiaryContainer, tonalElevation = 18.dp ) {
         items.forEachIndexed {idx, item ->
             NavigationBarItem(
                 selected = selectedIdx ==-1,
                 onClick = {
                     selectedIdx = idx
-                     if(idx == 0) navController.navigate("start-game")
+                     if(idx == 0) navController.navigate("create-game")
                     if(idx == 1) navController.navigate("join-game")
                           },
                 label = { Text(item, fontSize = 20.sp, fontWeight = if (selectedIdx == idx) FontWeight.Bold else FontWeight.Light)},
-                icon = {}
-            )
+                icon = {},
+
+                )
         }
     }
 }

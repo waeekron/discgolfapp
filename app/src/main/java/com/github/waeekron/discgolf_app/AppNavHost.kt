@@ -6,12 +6,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.github.waeekron.discgolf_app.ui.gamestart.GameJoin
-import com.github.waeekron.discgolf_app.ui.gamestart.GameStart
+import com.github.waeekron.discgolf_app.ui.newgame.JoinGame
+import com.github.waeekron.discgolf_app.ui.newgame.CreateGame
 
 // Destinations
-data object StartGame: AppRoute {
-   override val route = "start-game"
+data object CreateGame: AppRoute {
+   override val route = "create-game"
 }
 data object JoinGame: AppRoute {
     override val route = "join-game"
@@ -27,12 +27,12 @@ fun Navigation(navController: NavHostController,
 ) {
 
     NavHost(navController = navController, startDestination = "new-game", modifier = modifier) {
-        navigation(startDestination = StartGame.route, route="new-game") {
-            composable(route=StartGame.route) {
-                GameStart()
+        navigation(startDestination = CreateGame.route, route="new-game") {
+            composable(route=CreateGame.route) {
+                CreateGame()
             }
             composable(route=JoinGame.route) {
-                GameJoin()
+                JoinGame()
             }
         }
 
